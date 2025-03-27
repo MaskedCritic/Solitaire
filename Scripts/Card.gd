@@ -10,7 +10,6 @@ var slot_card_is_in = null
 func _ready() -> void:
 	get_parent().connect_card_signals(self)
 
-
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta: float) -> void:
 	pass

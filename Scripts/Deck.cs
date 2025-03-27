@@ -15,23 +15,24 @@ public partial class Deck : Node2D
 	{
 
 		#region Shuffle Cards
-		List<int> unshuffled = new List<int>(52);
+		List<int> unshuffled = new List<int>(DECK_SIZE);
 		for (int i = 0; i < DECK_SIZE; i++)
 		{
 			unshuffled.Add(i);
 		}
-
+		Random rand = new Random();
 		PackedScene cardScene = ResourceLoader.Load<PackedScene>(CARD_SCENE);
 		for (int i = 0; i < DECK_SIZE; i++)
 		{
-			Random rand = new Random();
 			int toCreate = rand.Next(unshuffled.Count);
 			Node2D card = (Node2D) cardScene.Instantiate();
+			
 			Array<Node> children = card.GetChildren(true);
 			for (int j = 0; j < children.Count; j++)
 			{
 				var child = children[j];
-				if (child.GetClass() == "Sprite2D")
+				//GD.Print(child.Name);
+				if (child.Name == "CardImage")
 				{
 					Sprite2D toEdit = (Sprite2D) child;
 					CardInfo info = MapToCard(unshuffled[toCreate]);

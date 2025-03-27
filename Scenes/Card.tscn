@@ -1,6 +1,7 @@
-[gd_scene load_steps=3 format=3 uid="uid://cndqnwq6cq04"]
+[gd_scene load_steps=4 format=3 uid="uid://cndqnwq6cq04"]
 
 [ext_resource type="Script" path="res://Scripts/Card.gd" id="1_8oipy"]
+[ext_resource type="Texture2D" uid="uid://coalrt2i10ip7" path="res://CardsPNG/MandelbrotCardBack.png" id="2_eac2k"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_ld1pf"]
 size = Vector2(116, 174)
@@ -10,6 +11,10 @@ script = ExtResource("1_8oipy")
 metadata/CardSuit = ""
 metadata/CardNumber = ""
 metadata/CardColor = ""
+
+[node name="CardBack" type="Sprite2D" parent="."]
+scale = Vector2(0.33, 0.33)
+texture = ExtResource("2_eac2k")
 
 [node name="CardImage" type="Sprite2D" parent="."]
 scale = Vector2(0.33, 0.33)

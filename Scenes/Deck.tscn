@@ -1,0 +1,44 @@
+[gd_scene load_steps=6 format=3 uid="uid://dv8vn21q1yjdk"]
+
+[ext_resource type="Script" path="res://Scripts/Deck.cs" id="1_0sscq"]
+[ext_resource type="Texture2D" uid="uid://coalrt2i10ip7" path="res://CardsPNG/MandelbrotCardBack.png" id="2_8y301"]
+[ext_resource type="Texture2D" uid="uid://bb2eowghd7mqv" path="res://CardsPNG/CardSlot.png" id="3_nplgf"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_ebmce"]
+size = Vector2(116, 174)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_ejb8u"]
+size = Vector2(118, 176)
+
+[node name="Deck" type="Node2D"]
+script = ExtResource("1_0sscq")
+
+[node name="DeckLocation" type="Sprite2D" parent="."]
+scale = Vector2(0.33, 0.33)
+texture = ExtResource("2_8y301")
+
+[node name="EmptyDeckSlot" type="Sprite2D" parent="."]
+z_index = -1
+scale = Vector2(0.33, 0.33)
+texture = ExtResource("3_nplgf")
+
+[node name="DrawLocation" type="Sprite2D" parent="."]
+z_index = -1
+position = Vector2(130, 0)
+scale = Vector2(0.33, 0.33)
+texture = ExtResource("3_nplgf")
+
+[node name="DeckPile" type="Area2D" parent="."]
+collision_layer = 4
+collision_mask = 4
+
+[node name="DeckPileCollision" type="CollisionShape2D" parent="DeckPile"]
+shape = SubResource("RectangleShape2D_ebmce")
+
+[node name="DrawPile" type="Area2D" parent="."]
+collision_layer = 8
+collision_mask = 8
+
+[node name="DrawPileCollision" type="CollisionShape2D" parent="DrawPile"]
+position = Vector2(130, 0)
+shape = SubResource("RectangleShape2D_ejb8u")

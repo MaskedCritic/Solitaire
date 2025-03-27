@@ -5,18 +5,25 @@ const COLLISION_MASK_CARD_SLOT = 2
 var screen_size
 var card_being_dragged
 var is_hovering_on_card
+var input_manager_reference
 
-func _input(event):
-	if event is InputEventMouseButton and event.button_index == MOUSE_BUTTON_LEFT:
-		if event.pressed:
-			var card = check_for_card(COLLISION_MASK_CARD)
-			if card:
-				#game logic required here to allow snap back
-				start_drag(card)
-		else:
-			#game logic required here to snap back to old position if invalid placement
-			if (card_being_dragged):
-				stop_drag()
+# Called when the node enters the scene tree for the first time.
+func _ready() -> void:
+	input_manager_reference = $"../InputManager"
+	screen_size = get_viewport_rect().size
+	input_manager_reference.connect("left_mouse_button_released", on_left_click_released)
+
+#func _input(event):
+	#if event is InputEventMouseButton and event.button_index == MOUSE_BUTTON_LEFT:
+		#if event.pressed:
+			#var card = check_for_card(COLLISION_MASK_CARD)
+			#if card:
+				##game logic required here to allow snap back
+				#start_drag(card)
+		#else:
+			##game logic required here to snap back to old position if invalid placement
+			#if (card_being_dragged):
+				#stop_drag()
 
 func check_for_card(card_type):
 	var space_state = get_world_2d().direct_space_state
@@ -86,9 +93,9 @@ func stop_drag():
 		card_slot_found.card_in_slot = true
 	card_being_dragged = null
 
-# Called when the node enters the scene tree for the first time.
-func _ready() -> void:
-	screen_size = get_viewport_rect().size
+func on_left_click_released():
+	if (card_being_dragged):
+		stop_drag()
 
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
